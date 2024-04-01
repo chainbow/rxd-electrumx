@@ -15,7 +15,7 @@ services:
       - DB_DIRECTORY=/data
       - DB_ENGINE=leveldb
       - SERVICES=tcp://0.0.0.0:50010,ws://0.0.0.0:50020,wss://0.0.0.0:50022
-      - REPORT_SERVICES=ssl://${DOMAIN}:50010,tcp://${DOMAIN}:50010
+      - REPORT_SERVICES=tcp://${DOMAIN}:50010
     ports:
       - "50010:50010"
       - "50020:50020"
