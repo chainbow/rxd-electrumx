@@ -37,7 +37,7 @@ services:
       - rxd-electrumx-network
     volumes:
       - ./data/radiant:/data
-      - ./radiant.conf:/data/radiant.conf
+      - ./radiant.conf:/data/radiantnode/radiant.conf
     command: radiantd
     restart: always
 networks:
