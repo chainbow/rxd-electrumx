@@ -1,42 +1,44 @@
 version: '3'
 services:
   electrumx:
-    build:
-      context: ./
-    container_name: electrumx
+    container_name: rxd-electrumx
     depends_on:
-      - bitcoind
-    image: chainbow/electrumx:${APP_VER}
+      - radiantnode
+    image: radiantcommunity/radiant-node:latest
     environment:
-      - DAEMON_URL=bitcoin:password@bitcoind
-      - COIN=Bitcoin
-      - SERVICES=ssl://0.0.0.0:50002,tcp://0.0.0.0:50001
-      - REPORT_SERVICES=ssl://${DOMAIN}:50002,tcp://${DOMAIN}:50001
+      - DAEMON_URL=http://raduser:radpass@radiantnode:7332
+      - COIN=Radiant
+      - NET=mainnet
+      - REQUEST_TIMEOUT=60
+      - DB_DIRECTORY=/data
+      - DB_ENGINE=leveldb
+      - SERVICES=tcp://0.0.0.0:50010,ws://0.0.0.0:50020,wss://0.0.0.0:50022
+      - REPORT_SERVICES=ssl://${DOMAIN}:50010,tcp://${DOMAIN}:50010
     ports:
-      - "50002:50002"
-      - "50001:50001"
-      - "50004:50004"
+      - "50010:50010"
+      - "50020:50020"
+      - "50022:50022"
     networks:
-      - electrumx-network
+      - rxd-electrumx-network
     volumes:
       - ./data/electrumx:/data
     restart: always
-  bitcoind:
-    image: 'ruimarinho/bitcoin-core:latest'
-    container_name: bitcoind
+  radiantnode:
+    image: 'radiantcommunity/radiant-node:latest'
+    container_name: radiantnode
     ports:
       # change to 18333 if running testnet
-      - '8333:8333'
+      - '7333:7333'
       # JSON-RPC
-      - '8332:8332'
+      - '7332:7332'
       # ZMQ
-      - '28332:28332'
+      - '27332:27332'
     networks:
-      - electrumx-network
+      - rxd-electrumx-network
     volumes:
-      - ./data/bitcoin:/data
-      - ./bitcoin.conf:/data/bitcoin.conf
-    command: bitcoind 
+      - ./data/radiant:/data
+      - ./radiant.conf:/data/radiant.conf
+    command: radiantd
     restart: always
 networks:
-  electrumx-network:
+  rxd-electrumx-network:
