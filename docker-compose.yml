@@ -1,10 +1,12 @@
 version: '3'
 services:
-  electrumx:
+  rxd-electrumx:
+    build:
+      context: ./
     container_name: rxd-electrumx
     depends_on:
       - radiantnode
-    image: radiantcommunity/radiant-node:latest
+    image: rxd-electrumx
     environment:
       - DAEMON_URL=http://raduser:radpass@radiantnode:7332
       - COIN=Radiant
