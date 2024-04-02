@@ -18,8 +18,6 @@ services:
       - REPORT_SERVICES=tcp://${DOMAIN}:50010
     ports:
       - "50010:50010"
-      # - "50020:50020"
-      # - "50022:50022"
     networks:
       - rxd-electrumx-network
     volumes:
@@ -28,7 +26,7 @@ services:
   radiantnode:
     image: 'radiantcommunity/radiant-node:latest'
     container_name: radiantnode
-    ports:
+    # ports:
       # change to 18333 if running testnet
       # - '7333:7333'
       # JSON-RPC
