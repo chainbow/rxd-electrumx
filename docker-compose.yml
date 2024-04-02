@@ -26,13 +26,13 @@ services:
   radiantnode:
     image: 'radiantcommunity/radiant-node:latest'
     container_name: radiantnode
-    ports:
-      # change to 18333 if running testnet
-      - '7333:7333'
-      # JSON-RPC
-      - '7332:7332'
-      # ZMQ
-      - '27332:27332'
+    # ports:
+    #   # change to 18333 if running testnet
+    #   - '7333:7333'
+    #   # JSON-RPC
+    #   - '7332:7332'
+    #   # ZMQ
+    #   - '27332:27332'
     networks:
       - rxd-electrumx-network
     volumes:
