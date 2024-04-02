@@ -6,7 +6,7 @@ services:
     container_name: radiant-electrumx
     depends_on:
       - radiantnode
-    image: rxd-electrumx
+    image: radiant-electrumx
     environment:
       - DAEMON_URL=http://raduser:radpass@radiantnode:7332
       - COIN=Radiant
