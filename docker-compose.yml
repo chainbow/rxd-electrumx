@@ -1,9 +1,9 @@
 version: '3'
 services:
-  rxd-electrumx:
+  radiant-electrumx:
     build:
       context: ./
-    container_name: rxd-electrumx
+    container_name: radiant-electrumx
     depends_on:
       - radiantnode
     image: rxd-electrumx
@@ -14,12 +14,12 @@ services:
       - REQUEST_TIMEOUT=60
       - DB_DIRECTORY=/data
       - DB_ENGINE=leveldb
-      - SERVICES=tcp://0.0.0.0:50010,ws://0.0.0.0:50020,wss://0.0.0.0:50022
+      - SERVICES=tcp://0.0.0.0:50010
       - REPORT_SERVICES=tcp://${DOMAIN}:50010
     ports:
       - "50010:50010"
-      - "50020:50020"
-      - "50022:50022"
+      # - "50020:50020"
+      # - "50022:50022"
     networks:
       - rxd-electrumx-network
     volumes:
@@ -30,11 +30,11 @@ services:
     container_name: radiantnode
     ports:
       # change to 18333 if running testnet
-      - '7333:7333'
+      # - '7333:7333'
       # JSON-RPC
-      - '7332:7332'
+      # - '7332:7332'
       # ZMQ
-      - '27332:27332'
+      # - '27332:27332'
     networks:
       - rxd-electrumx-network
     volumes:
