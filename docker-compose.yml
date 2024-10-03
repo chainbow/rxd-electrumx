@@ -35,12 +35,15 @@ services:
     #   - '27332:27332'
     networks:
       - rxd-electrumx-network
+      - shared
     volumes:
       - ./data:/data
       - ./radiant.conf:/data/radiantnode/radiant.conf
     command: radiantd
     restart: always
+
 networks:
   rxd-electrumx-network:
-  shared:
+  default:
+    name: shared
     external: true
