@@ -42,3 +42,5 @@ services:
     restart: always
 networks:
   rxd-electrumx-network:
+  shared:
+    external: true
