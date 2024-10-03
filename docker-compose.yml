@@ -18,8 +18,8 @@ services:
       - REPORT_SERVICES=tcp://${DOMAIN}:50010
     ports:
       - "50010:50010"
-    networks:
-      - rxd-electrumx-network
+    # networks:
+    #   - rxd-electrumx-network
     volumes:
       - ./data/electrumx:/data
     restart: always
@@ -33,9 +33,9 @@ services:
     #   - '7332:7332'
     #   # ZMQ
     #   - '27332:27332'
-    networks:
-      - rxd-electrumx-network
-      - shared
+    # networks:
+    #   - rxd-electrumx-network
+    #   - shared
     volumes:
       - ./data:/data
       - ./radiant.conf:/data/radiantnode/radiant.conf
@@ -43,7 +43,7 @@ services:
     restart: always
 
 networks:
-  rxd-electrumx-network:
+  # rxd-electrumx-network:
   default:
     name: shared
     external: true
